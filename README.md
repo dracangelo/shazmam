@@ -1,70 +1,69 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Components
 
-## Available Scripts
+### 1. `SearchBar.js`
+A component that handles text input for searching lyrics or songs. It takes in a search query and triggers the search process.
 
-In the project directory, you can run:
+### 2. `LyricsResult.js`
+A component that displays search results from the Genius API, including the song title, artist, and a link to view the lyrics on the Genius website.
 
-### `npm start`
+### 3. `VoiceInput.js`
+A component that allows users to use voice input for searching lyrics. The voice input is transcribed and used to search for songs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/dracangelo/shazmam
+    ```
 
-### `npm test`
+2. Navigate into the project directory:
+    ```bash
+    cd shazmam
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-### `npm run build`
+4. Set up your environment variables:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Create a `.env` file in the root directory and add your Genius API access token:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```
+    REACT_APP_GENIUS_ACCESS_TOKEN=your_access_token_here
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Run the application:
+    ```bash
+    npm start
+    ```
 
-### `npm run eject`
+## Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React**: A JavaScript library for building user interfaces.
+- **axios**: Promise-based HTTP client for making requests to the Genius API.
+- **react-speech-recognition** (optional): For handling voice recognition.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How It Works
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Users can search for lyrics either by typing a query in the search bar or using voice input.
+- The app sends the query to the Genius API, retrieves search results, and displays the relevant information.
+- Each result provides a link to view the full lyrics on the Genius website.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Features
 
-## Learn More
+- Voice and text input support.
+- Loading states and error handling.
+- Responsive and user-friendly UI.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Future Enhancements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Add pagination for search results.
+- Integrate additional music data sources.
+- Improve voice recognition accuracy.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
