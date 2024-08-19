@@ -1,20 +1,39 @@
-// App.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import VoiceInput from '../src/components/VoiceInput';
-import SearchBar from '../src/components/./SearchBar';
-import LyricsResult from '../src/components/./LyricsResult';
+import VoiceInput from './components/VoiceInput';
+import SearchBar from './components/SearchBar';
+import LyricsResult from './components/LyricsResult';
 
 const App = () => {
-  const [lyrics, setLyrics] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Function to search lyrics using the Genius API
   const searchLyrics = async (query) => {
+    setError('');
+    setResults([]);
+    setLoading(true);
+
     try {
-      const response = await axios.get(`https://api.lyrics.ovh/v1/artist/title`); //api
-      setLyrics(response.data.lyrics);
+      const response = await axios.get('https://api.genius.com/search', {
+        params: {
+          q: query, // The search query (song title, artist, or lyrics)
+        },
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_GENIUS_ACCESS_TOKEN}`, // Access token from environment variable
+        },
+      });
+
+      if (response.data.response.hits.length > 0) {
+        setResults(response.data.response.hits);
+      } else {
+        setError('No results found. Please try different search terms.');
+      }
     } catch (err) {
-      setError('Lyrics not found');
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -24,10 +43,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Lyrics Search</h1>
+      <h1>Genius Lyrics Search</h1>
       <SearchBar onSearch={searchLyrics} />
       <VoiceInput onVoiceInput={handleVoiceInput} />
-      <LyricsResult lyrics={lyrics} error={error} />
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : (
+        <LyricsResult results={results} />
+      )}
     </div>
   );
 };

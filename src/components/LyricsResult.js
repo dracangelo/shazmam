@@ -1,9 +1,17 @@
 import React from 'react';
 
-const LyricsResult = ({ lyrics }) => {
+const LyricsResult = ({ results }) => {
   return (
-    <div className="lyrics-result">
-      {lyrics ? <pre>{lyrics}</pre> : <p>No lyrics to display.</p>}
+    <div>
+      {results.map((result) => (
+        <div key={result.result.id}>
+          <h3>{result.result.full_title}</h3>
+          <p>Artist: {result.result.primary_artist.name}</p>
+          <a href={result.result.url} target="_blank" rel="noopener noreferrer">
+            View Lyrics on Genius
+          </a>
+        </div>
+      ))}
     </div>
   );
 };
